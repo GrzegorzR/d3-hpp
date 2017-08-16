@@ -92,21 +92,7 @@ function getNeighbours(x,y,mSize){
 
 
 
-function countAliveNeighbours(neighbours,grid){
-	result = 0;
-	//console.log(grid);
-	for (var i =0; i < 8; i++){
-		//console.log(neighbours[i]);
-		var x = neighbours[i][0];
-		var y = neighbours[i][1];
-		//console.log(x,y);
-		//console.log(grid[y][x])	;	
-		if(grid[y][x].alive){
-			result++;		
-		}
-	}
-	return result;
-}
+
 
 
 function createGridData() {
@@ -147,6 +133,20 @@ function createGridData() {
 }
 
 
+function horizontalCrash(row, column, oldData){
+	var crash = oldData[row ][column + 1].left && oldData[row][column -1].right;
+	var noOthers = !oldData[row -1][column].up && !oldData[row +1][column].down;
+	return crash && noOthers;
+
+}
+
+function verticalCrash(row, column, oldData){
+	var crash = oldData[row - 1][column].up && oldData[row + 1][column].down;
+	var noOthers = !oldData[row][column +1].left && !oldData[row][column - 1].right;
+	return crash && noOthers;
+
+}
+
 function createCell(row, column, oldData){
 	var result = jQuery.extend(true, {}, oldData[row][column]);
 
@@ -156,8 +156,18 @@ function createCell(row, column, oldData){
 		result.up  = oldData[row - 1][column].up || (oldData[row - 1][column].wall && oldData[row][column].down);
 		result.down  = oldData[row + 1][column].down || (oldData[row + 1][column].wall && oldData[row][column].up);
 
-		if((oldData[row - 1][column].up && oldData[row - 1][column].down)&& ()){
-				
+		if(horizontalCrash(row, column, oldData)){
+			result.right = false;
+			result.left = false;
+			result.up = true;
+			result.down = true;
+		}
+
+		if(verticalCrash(row, column, oldData)){
+			result.right = true;
+			result.left = true;
+			result.up = false;
+			result.down = false;
 		}
 
 	}
