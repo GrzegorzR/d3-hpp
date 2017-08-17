@@ -34,7 +34,9 @@ function initilizeWalls(data){
 
 }
 
-
+function startStop(){
+	on = !on;
+}
 
 
 function getNeighbours(x,y,mSize){
@@ -89,10 +91,6 @@ function getNeighbours(x,y,mSize){
 	
 
 }
-
-
-
-
 
 
 function createGridData() {

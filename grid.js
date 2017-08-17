@@ -1,16 +1,9 @@
 
-function sleep(ms) {
-	return null;
-}
-
-
-
-
-
-
 
 
 var gridData = createGridData();	
+
+
 
 
 function vis(){
@@ -59,11 +52,11 @@ function restart(){
 
 	d3.select("#grid").html("");
 	gridData = createGridData(); 
+	on = false;
 	vis();
 
 }
 
-restart();
 
 
 
@@ -85,6 +78,7 @@ function oneStep(){
 
 
 
+restart();
 setInterval(step, stepTime);
 
 
