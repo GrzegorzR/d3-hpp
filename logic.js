@@ -200,7 +200,8 @@ function simulationStep(oldData){
 
 	}
 	
-	applyNewData(data, oldData)	
+	applyNewData(data, oldData);
+	plot();	
 	
 
 }
