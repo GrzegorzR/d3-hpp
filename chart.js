@@ -4,41 +4,46 @@
 function calculateDensityUp(){
 
 	var alives =0;
+	var counts = 0;
 	var wallY = wallH*mSize;
 
-	for (var row = 0; row < wallY; row++) {
-		for (var column = 0; column < mSize; column++) {
+	for (var row = 1; row < wallY; row++) {
+		for (var column = 1; column < mSize; column++) {
 			if(gridData[row][column].right ||
 			   gridData[row][column].left  ||
 			   gridData[row][column].up    ||
 			   gridData[row][column].down ){
-				alives++;
+			   alives++;
 			}
+			counts++;
 			
 		}
 	}
-	return alives/(mSize*wallY);
-}
+	//eturn alives/((mSize-2)*(wallY-2));
+	return alives/counts;
+}	
 
 
 function calculateDensityDown(){
 
 	var alives =0;
 	var wallY = wallH*mSize;
+		var counts = 0;
 
-	for (var row = wallY; row < mSize; row++) {
-		for (var column = 0; column < mSize; column++) {
+
+	for (var row = wallY+1 ; row < mSize; row++) {
+		for (var column = 1; column < mSize; column++) {
 			if(gridData[row][column].right ||
 			   gridData[row][column].left  ||
 			   gridData[row][column].up    ||
 			   gridData[row][column].down ){
 				alives++;
 			}
-			
+			counts++;
 		}
 	}
-	return alives/(mSize*(mSize - wallY));
-
+	//return alives/((mSize-2)*(mSize - wallY -2));
+	return alives/counts;
 }
 
 

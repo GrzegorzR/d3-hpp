@@ -35,14 +35,16 @@
            <button class="btn btn-default btn-lg  btn-block" onclick="restart()">Restart</button>
            <br>
 
-           <label for="iden">Initial density</label>
-           <input id="iden" min="0" max="1" class=" btn-block" value="0.3" step="0.01" onchange="changeInitialDen(this.value)" type="range">
-         		<span id="range1">0.5</span>
+           <label for="iden">Initial probablity</label>
+           <input id="iden" min="0" max="1" class=" btn-block" value="0.1" step="0.01"
+           oninput="changeInitialDen(this.value)" onmove="changeInitialDen(this.value)" type="range">
+         		<span id="range1">0.1</span>
+
 
             <br>
-            <label for="iden">Initial density</label>
-           <input id="iden" min="0" max="1" class=" btn-block" value="0.5" step="0.01" onchange="changeInitialDen(this.value)" type="range">
-               <span id="range2">0.5</span>
+            <label for="iden">Gap size</label>
+           <input id="iden" min="0" max="20" class=" btn-block" value="3" step="1" onchange="changeInitialGap(this.value)" type="range">
+               <span id="range2">3</span>
 
          	<br>
          	<!--
